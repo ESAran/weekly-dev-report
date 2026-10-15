@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "week": { "start": "2026-10-07", "end": "2026-10-13" },
+  "demo": true,
+  "activityMetric": "changedLines",
+  "sources": {
+    "github": { "status": "complete", "note": "Dados fictícios; cobertura completa do exemplo." },
+    "gitlab": { "status": "complete", "note": "Dados fictícios; cobertura completa do exemplo." }
+  },
+  "projects": [
+    { "id": "llm-benchmark", "name": "LLM Benchmark", "platform": "github", "icon": "cube", "color": "blue", "commits": 12, "added": 354, "removed": 158, "summary": "refino do benchmark e ajustes na coleta de métricas" },
+    { "id": "portal-admin", "name": "Portal Admin", "platform": "gitlab", "icon": "monitor", "color": "purple", "commits": 9, "added": 262, "removed": 129, "summary": "correções de autenticação e melhoria de fluxo" },
+    { "id": "app-mobile", "name": "App Mobile", "platform": "github", "icon": "phone", "color": "green", "commits": 4, "added": 154, "removed": 67, "summary": "ajustes de navegação e correções pontuais" },
+    { "id": "site-institucional", "name": "Site Institucional", "platform": "gitlab", "icon": "globe", "color": "orange", "commits": 2, "added": 72, "removed": 37, "summary": "atualizações de conteúdo e pequenas correções visuais" }
+  ]
+}

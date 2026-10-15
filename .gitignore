@@ -1,0 +1,46 @@
+# Dependencies and local tooling
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets and private configuration (example JSON remains public)
+.env
+.env.*
+!.env.example
+*.local.*
+config.json
+credentials*
+secrets*
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+
+# Real reports, evidence, connector transport and logs
+reports/
+private-run/
+private*/
+relatorio*/
+cache/
+work/
+audit.json
+report.json
+report.png
+summaries.json
+run.json
+request.json
+response-*.json*
+.collector.lock
+*.log
+logs/
+*.tmp
+*.zip
+# Only the explicitly fictitious JSON belongs in the public data directory
+/data/*
+!/data/demo.json

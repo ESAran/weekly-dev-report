@@ -1,0 +1,8 @@
+{
+  "identities": {
+    "github": { "emails": [] },
+    "gitlab": { "emails": [] }
+  },
+  "exclude_patterns": [],
+  "initial_import_threshold": 10000
+}
