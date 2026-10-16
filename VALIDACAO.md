@@ -42,3 +42,11 @@ A composição, cores, tipografia, espaçamento e ordem das seções foram prese
 GitHub: 16 commits, 59% dos commits e 733 linhas. GitLab: 11 commits, 41% dos commits e 500 linhas. Esses dados são exclusivamente demonstrativos.
 
 A revisão de privacidade, a ausência de histórico Git local e as pendências de publicação estão em [PUBLICACAO.md](PUBLICACAO.md).
+
+## Execução local simplificada — 16 de outubro de 2026
+
+A rotina `collector.weekly` foi validada com dados fictícios e Google Chrome instalado (155.0.8059.80), sem instalação ou download durante a execução. PNG: 1.884 × 3.344 px. O estado temporário foi removido automaticamente; somente a imagem e o pequeno arquivo de bloqueio foram preservados.
+
+Passaram 18 testes Python, 10 testes JavaScript e a suíte visual com o canal Chrome, incluindo textos longos, baixa atividade e cobertura incompleta. Os quatro novos testes Python verificam bloqueio de execuções simultâneas, proteção do diretório publicável, limpeza em falhas e ausência de um relatório de zeros quando ambas as fontes estão indisponíveis.
+
+HTML, CSS e ícones mantêm os hashes da composição aprovada. A coleta via plugins e as regras de métricas existentes foram preservadas; as integrações reais não foram recolhidas nesta verificação para evitar consultas redundantes. Os resumos da rotina são extrativos, sem uma etapa adicional de interpretação por IA. O Chromium separado permanece como alternativa opcional, previamente instalada, não como requisito do modo local padrão.

@@ -9,7 +9,7 @@ import { chromium } from 'playwright';
 
 const demo = JSON.parse(await readFile(new URL('../data/demo.json', import.meta.url), 'utf8'));
 const directory = await mkdtemp(join(tmpdir(), 'weekly-report-'));
-const channel = process.env.PLAYWRIGHT_CHANNEL;
+const channel = process.env.PLAYWRIGHT_CHANNEL || 'chrome';
 const hash = buffer => createHash('sha256').update(buffer).digest('hex');
 try {
   const first = await exportReport({ data: demo, output: join(directory, 'first.png'), scale: 1, channel });
@@ -31,7 +31,7 @@ try {
   const service = await startServer({ data: tiny });
   let browser;
   try {
-    browser = await chromium.launch({ headless: true, ...(channel ? { channel } : {}) });
+    browser = await chromium.launch({ headless: true, ...(channel && channel !== 'chromium' ? { channel } : {}) });
     const page = await browser.newPage({ viewport: { width: 942, height: 1672 } });
     await page.goto(service.url + '/?data=/__report-data.json');
     assert.equal((await page.evaluate(() => window.reportReady)).ok, true);

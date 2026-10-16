@@ -2,7 +2,13 @@
 
 Este é um adaptador de transporte para uma sessão autenticada do Codex. Não execute `codex_bridge.js` com Node: `tools`, `load`, `store` e `text` pertencem ao ambiente `functions.exec` do Codex.
 
-## Procedimento para o agente
+## Rotina semanal simplificada
+
+Inicie `python3 -m collector.weekly --state-dir PASTA_PRIVADA --output-dir PASTA_DE_PNGS` numa sessão persistente. O comando imprime JSON com `stage: collection` e o caminho absoluto `bridge`. Esse caminho, criado pelo programa local, é o que deve ser definido em `store('weeklyReportBridge', caminho)`.
+
+Descubra as ferramentas da allowlist e execute este driver pelo `functions.exec` a cada lote, como descrito abaixo. O próprio comando termina a coleta, monta o JSON, gera os resumos extrativos, exporta usando o Chrome instalado e limpa os intermediários, inclusive ao falhar. A última linha JSON informa `png`, `period`, `sources` e `demo`. Não há instalação ou download na rotina. O agente não precisa reabrir auditorias nem reescrever resumos; a revisão semântica é opcional. Não substitua falhas por uma demonstração.
+
+## Procedimento detalhado para o agente
 
 1. Confirme os conectores com `github_get_profile` e `gitlab_get_current_user`. Descubra os esquemas das ferramentas da allowlist antes de chamá-las.
 2. Inicie `python3 -m collector.collect` numa sessão de execução persistente, com uma pasta privada de ponte e uma de saída fora do template. Use exatamente um coletor por pasta; o Python mantém um bloqueio exclusivo.

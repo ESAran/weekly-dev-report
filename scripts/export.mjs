@@ -5,14 +5,14 @@ import { chromium } from 'playwright';
 import { startServer, root } from './server.mjs';
 import { buildReport } from '../model.js';
 
-export async function exportReport({ input = resolve(root, 'data/demo.json'), output = resolve(root, 'reports/weekly-dev-report.png'), scale = 2, channel, data } = {}) {
+export async function exportReport({ input = resolve(root, 'data/demo.json'), output = resolve(root, 'reports/weekly-dev-report.png'), scale = 2, channel = process.env.PLAYWRIGHT_CHANNEL || 'chrome', data } = {}) {
   if (![1, 2, 3].includes(scale)) throw new Error('--scale deve ser 1, 2 ou 3.');
   const payload = data ?? JSON.parse(await readFile(input, 'utf8'));
   buildReport(payload);
   const service = await startServer({ data: payload });
   let browser;
   try {
-    browser = await chromium.launch({ headless: true, ...(channel ? { channel } : {}) });
+    browser = await chromium.launch({ headless: true, ...(channel && channel !== 'chromium' ? { channel } : {}) });
     const context = await browser.newContext({
       viewport: { width: 942, height: 1672 }, deviceScaleFactor: scale,
       locale: 'pt-BR', timezoneId: 'UTC', colorScheme: 'dark', reducedMotion: 'reduce',
@@ -57,7 +57,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
     for (let index = 0; index < args.length; index += 2) {
       const flag = args[index];
       const value = args[index + 1];
-      if (!['--input', '--output', '--scale', '--channel'].includes(flag) || !value) throw new Error('Uso: npm run export -- [--input arquivo.json] [--output arquivo.png] [--scale 1|2|3] [--channel chrome]');
+      if (!['--input', '--output', '--scale', '--channel'].includes(flag) || !value) throw new Error('Uso: npm run export -- [--input arquivo.json] [--output arquivo.png] [--scale 1|2|3] [--channel chrome|chromium]');
       options[flag.slice(2)] = flag === '--scale' ? Number(value) : flag === '--channel' ? value : resolve(value);
     }
     console.log(JSON.stringify(await exportReport(options), null, 2));

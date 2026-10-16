@@ -6,7 +6,11 @@ O coletor Python usa as conexões GitHub e GitLab do Codex. Ele não extrai toke
 
 As conexões MCP autenticadas ficam no Codex e não são disponibilizadas diretamente ao processo Python. Por isso, `collector/bridge.py` implementa um protocolo local de pedidos e respostas: o Python solicita operações permitidas, o Codex executa essas leituras usando os conectores e devolve os resultados. Não é uma nova autenticação nem um servidor exposto na rede.
 
-O coletor precisa de uma sessão do Codex para atender a ponte. Rodar o comando Python sozinho deixa o processo aguardando respostas; ele não funciona como uma coleta autônoma fora do Codex nesta etapa. Nenhuma automação foi configurada. Uma futura execução independente exigiria um transporte API com autenticação segura e permissões mínimas de leitura.
+O coletor precisa de uma sessão do Codex para atender a ponte. Rodar o comando Python sozinho deixa o processo aguardando respostas; ele não funciona como uma coleta autônoma fora do Codex nesta etapa. A rotina local pode ser agendada no Codex conforme [LOCAL.md](LOCAL.md). Uma execução independente do agente exigiria um transporte API com autenticação segura e permissões mínimas de leitura.
+
+## Rotina local simplificada
+
+Para a execução semanal com Chrome instalado, sem downloads e com limpeza automática dos intermediários, use `npm run weekly -- --output-dir ../weekly-reports --state-dir ../private-run`. O Codex atende à ponte informada pelo comando. `--demo` dispensa plugins. Os passos detalhados a seguir permanecem disponíveis para auditoria e revisão de resumos.
 
 ## Iniciar uma coleta dentro do Codex
 
@@ -73,7 +77,7 @@ As limitações de paginação e diff estão descritas nas documentações ofici
 
 O modo automático padrão é extrativo: seleciona assuntos de commits e títulos de revisões com referências às evidências. Não inventa funcionalidades a partir de nomes de arquivos. Se as mensagens são vagas, informa que a finalidade não está documentada.
 
-Para resumos mais claros em português, o Codex deve analisar mensagens, descrições e os trechos de diff na auditoria e produzir um arquivo privado de resumos com referências:
+Para a revisão opcional com resumos mais claros em português, o Codex pode analisar mensagens, descrições e os trechos de diff na auditoria e produzir um arquivo privado de resumos com referências:
 
 ```json
 {

@@ -4,12 +4,17 @@
   "private": true,
   "type": "module",
   "description": "Template local de relatório semanal com exportação PNG determinística.",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node scripts/serve.mjs",
     "export": "node scripts/export.mjs",
     "test": "node --test tests/*.test.mjs",
-    "test:visual": "node tests/visual.mjs"
+    "test:visual": "node tests/visual.mjs",
+    "weekly": "python3 -m collector.weekly"
   },
-  "devDependencies": { "playwright": "1.62.1" }
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
 }
